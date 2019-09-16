@@ -24,9 +24,9 @@ public class ContinentServiceImpl implements ContinentService {
 	}
 
 	@Override
-	public Countries getCountriesInContinent(int continentId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Countries> getCountriesInContinent(int continentId) {
+		
+		return continentDao.getCountriesInContinent(continentId);
 	}
 
 	@Override

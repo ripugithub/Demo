@@ -8,7 +8,7 @@ import com.demo.continent.model.Countries;
 public interface ContinentService {
 	
 	List<Continent> getAllContinents();
-	Countries getCountriesInContinent(int continentId);
+	List<Countries> getCountriesInContinent(int continentId);
 	String getFlagOfACountry(int countryId);
 
 }
