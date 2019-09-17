@@ -43,6 +43,14 @@ public class ContinentController {
 		return new ResponseEntity<List<Countries>>(list, HttpStatus.OK);
 	}
 	
+	@GetMapping("/countries/flag/{name}")
+    public ResponseEntity<String> getFlagOfACountry(@PathVariable("name") String name)
+    {
+		String flag = continentService.getFlagOfACountry(name);
+		
+           return new ResponseEntity<String>(flag,HttpStatus.OK);
+    }
+	
 	
 
 }

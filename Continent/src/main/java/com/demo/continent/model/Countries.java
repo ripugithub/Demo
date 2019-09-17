@@ -7,13 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "countries")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@NamedNativeQuery(name="getCountriesPerContinent", query="select * from countries where continent_id=:continentId",resultClass=Countries.class)
+@NamedNativeQuery(name="getFlagOfACountry", query="select flag as countryFlag from countries where name=:name",resultClass=Countries.class)
 public class Countries {
 
 	@Id
@@ -25,6 +29,7 @@ public class Countries {
 
    @ManyToOne(fetch=FetchType.LAZY)
    @JoinColumn(name = "continent_id" )  //adds the join column in the countries table for establishing the relationship between
+   @JsonIgnore
    private Continent continent;
 
 	public String getName() {

@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 @NamedNativeQuery(name="getAllContinents", query="Select * from continents",resultClass=Continent.class)
-@NamedNativeQuery(name="getCountriesPerContinent", query="select * from countries where continent_id=:continentId",resultClass=Continent.class)
+//@NamedNativeQuery(name="getCountriesPerContinent", query="select * from countries where continent_id=:continentId",resultClass=Continent.class)
 public class Continent {
 
 	

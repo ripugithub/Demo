@@ -30,9 +30,9 @@ public class ContinentServiceImpl implements ContinentService {
 	}
 
 	@Override
-	public String getFlagOfACountry(int countryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getFlagOfACountry(String countryName) {
+		
+		return continentDao.getFlagOfACountry(countryName);
 	}
 
 }

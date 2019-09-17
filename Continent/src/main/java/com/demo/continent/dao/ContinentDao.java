@@ -9,7 +9,7 @@ public interface ContinentDao {
 	
 	List<Continent> getAllContinents();
 	List<Countries> getCountriesInContinent(int continentId);
-	String getFlagOfACountry(int countryId);
+	String getFlagOfACountry(String name);
 	
 
 }

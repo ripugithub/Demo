@@ -9,6 +9,6 @@ public interface ContinentService {
 	
 	List<Continent> getAllContinents();
 	List<Countries> getCountriesInContinent(int continentId);
-	String getFlagOfACountry(int countryId);
+	String getFlagOfACountry(String countryName);
 
 }
