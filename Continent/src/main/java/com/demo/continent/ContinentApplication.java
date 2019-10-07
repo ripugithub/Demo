@@ -15,8 +15,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.demo.continent.model.Continent;
 import com.demo.continent.service.CountryService;
 
+
+/**
+ * @author Ripu
+ *
+ */
 @SpringBootApplication
 public class ContinentApplication {
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(ContinentApplication.class, args);
@@ -28,9 +34,10 @@ public class ContinentApplication {
 			// read JSON and load json
 			ObjectMapper mapper = new ObjectMapper();
 			TypeReference<List<Continent>> typeReference = new TypeReference<List<Continent>>(){};
-			//InputStream inputStream = TypeReference.class.getResourceAsStream("/json/continents.json");
-			File inputStream = new File("E:\\workspace\\Continent\\Continent\\src\\main\\resources\\json\\continents.json");
-			//System.out.println("--------"+convertStreamToString(inputStream));
+			String fileName = "json/continents.json";
+	        ClassLoader classLoader = new ContinentApplication().getClass().getClassLoader();
+	 
+	        File inputStream = new File(classLoader.getResource(fileName).getFile());
 			try {
 				List<Continent> continents = mapper.readValue(inputStream,typeReference);				
 				countryService.save(continents);

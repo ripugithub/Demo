@@ -8,9 +8,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.continent.controller.ContinentController;
 import com.demo.continent.dao.ContinentDao;
 import com.demo.continent.model.Continent;
 import com.demo.continent.model.Countries;
@@ -21,6 +24,7 @@ import com.demo.continent.model.Countries;
 //@NamedNativeQuery(name="getAllContinents", query="Select * from continents",resultClass=Continent.class)
 public class ContinentDaoImpl implements ContinentDao{
 
+	private final Logger logger = LoggerFactory.getLogger(ContinentDaoImpl.class);
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -28,7 +32,7 @@ public class ContinentDaoImpl implements ContinentDao{
 	public List<Continent> getAllContinents() {
 		
 		Query q = entityManager.createNamedQuery("getAllContinents", Continent.class);
-		System.out.println("*******************"+q.getResultList().size());
+		logger.debug("*******************"+q.getResultList().size());
 		return q.getResultList();
 		//return null;
 		

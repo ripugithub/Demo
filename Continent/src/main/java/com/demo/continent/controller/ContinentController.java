@@ -20,6 +20,10 @@ import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author Ripu
+ *
+ */
 @RestController
 @RequestMapping("/code")
 public class ContinentController {
@@ -46,6 +50,7 @@ public class ContinentController {
 	@GetMapping("/countries/{continentId}")
 	public ResponseEntity<List<Countries>> getCountriesOfContinents(@PathVariable("continentId") Integer continentId)
 	{
+		logger.debug("---------------Fetching Countries within a continent-----------------");
 		List<Countries> list = (List<Countries>) continentService.getCountriesInContinent(continentId);
 		return new ResponseEntity<List<Countries>>(list, HttpStatus.OK);
 	}
@@ -53,6 +58,8 @@ public class ContinentController {
 	@GetMapping("/countries/flag/{name}")
     public ResponseEntity<String> getFlagOfACountry(@PathVariable("name") String name)
     {
+		
+		logger.debug("---------------Fetching falg of a country-----------------");
 		String flag = continentService.getFlagOfACountry(name);
 		
            return new ResponseEntity<String>(flag,HttpStatus.OK);

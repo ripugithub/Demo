@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.demo.continent</groupId>
-	<artifactId>Continent</artifactId>
+	<artifactId>FlagSelectorApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Continent</name>
+	<name>FlagSelectorApp</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
