@@ -53,9 +53,14 @@ public class ContinentDaoImpl implements ContinentDao{
 
     public String getFlagOfACountry(String name) {
 
-           Query q = entityManager.createNamedQuery("getFlagOfACountry",Countries.class).setParameter("name", name);
+         //  Query q = entityManager..createNamedQuery("getFlagOfACountry",Countries.class).setParameter("name", name);
+           String hql = "Select flag from Countries where name=:name";
+           Query query = entityManager.createQuery(hql);
+           query.setParameter("name", name);
+           
+           String res = query.getSingleResult().toString();
 
-           return q.getSingleResult().toString();
+           return res;
 
     }
 

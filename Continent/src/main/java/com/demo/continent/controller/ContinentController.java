@@ -59,7 +59,7 @@ public class ContinentController {
     public ResponseEntity<String> getFlagOfACountry(@PathVariable("name") String name)
     {
 		
-		logger.debug("---------------Fetching falg of a country-----------------");
+		logger.debug("---------------Fetching flag of a country-----------------");
 		String flag = continentService.getFlagOfACountry(name);
 		
            return new ResponseEntity<String>(flag,HttpStatus.OK);

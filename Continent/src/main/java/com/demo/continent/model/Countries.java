@@ -66,12 +66,6 @@ public class Countries {
 		this.country_id = country_id;
 	}
 
-
-
-
-	
-
-
 	
 
 
