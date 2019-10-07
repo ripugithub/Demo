@@ -42,6 +42,7 @@ public class ContinentDaoImpl implements ContinentDao{
 	@Override
 	public List<Countries> getCountriesInContinent(int continentId) {
 		//String hql = " from Countries where continent_id= :continentId ";
+		logger.debug("*******************Fetch the list of countries in a continent************************");
 		Query q = entityManager.createNamedQuery("getCountriesPerContinent",Countries.class).setParameter("continentId", continentId);
 		
 		return q.getResultList();
@@ -53,6 +54,7 @@ public class ContinentDaoImpl implements ContinentDao{
 
     public String getFlagOfACountry(String name) {
 
+		logger.debug("*******************Fetch the flag of a countryt************************");
            String hql = "Select flag from Countries where name=:name";
            Query query = entityManager.createQuery(hql);
            query.setParameter("name", name);
