@@ -15,10 +15,17 @@ import com.demo.continent.model.Countries;
 import com.demo.continent.repository.ContinentRepo;
 import com.demo.continent.service.ContinentService;
 
+
+import org.slf4j.Logger;
+
+import org.slf4j.LoggerFactory;
+
 @RestController
 @RequestMapping("/code")
 public class ContinentController {
 	
+	
+	private final Logger logger = LoggerFactory.getLogger(ContinentController.class);
 	@Autowired
 	private ContinentService continentService;
 	@Autowired
@@ -30,7 +37,7 @@ public class ContinentController {
 	{
 		List<Continent> list = continentService.getAllContinents();
 		
-		//list.forEach(continent->System.out.println(continent.getContinent()));
+		logger.debug("---------------Fetching Continents-----------------");
 		
 		return new ResponseEntity<List<Continent>>(list, HttpStatus.OK);
 		

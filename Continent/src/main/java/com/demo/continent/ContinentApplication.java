@@ -29,7 +29,7 @@ public class ContinentApplication {
 			ObjectMapper mapper = new ObjectMapper();
 			TypeReference<List<Continent>> typeReference = new TypeReference<List<Continent>>(){};
 			//InputStream inputStream = TypeReference.class.getResourceAsStream("/json/continents.json");
-			File inputStream = new File("D:\\workspace\\Continent\\Continent\\src\\main\\resources\\json\\continents.json");
+			File inputStream = new File("E:\\workspace\\Continent\\Continent\\src\\main\\resources\\json\\continents.json");
 			//System.out.println("--------"+convertStreamToString(inputStream));
 			try {
 				List<Continent> continents = mapper.readValue(inputStream,typeReference);				
