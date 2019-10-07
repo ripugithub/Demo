@@ -28,10 +28,12 @@ public class ContinentApplication {
 		SpringApplication.run(ContinentApplication.class, args);
 	}
 	
+	
+	
 	@Bean
 	CommandLineRunner runner(CountryService countryService){
 	    return args -> {
-			// read JSON and load json
+			// Load JSON and read it to create tables in MYsql DB
 			ObjectMapper mapper = new ObjectMapper();
 			TypeReference<List<Continent>> typeReference = new TypeReference<List<Continent>>(){};
 			String fileName = "json/continents.json";

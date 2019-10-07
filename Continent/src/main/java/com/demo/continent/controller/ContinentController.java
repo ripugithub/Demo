@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.continent.exception.ContinentNotFoundException;
 import com.demo.continent.model.Continent;
 import com.demo.continent.model.Countries;
 import com.demo.continent.repository.ContinentRepo;
@@ -35,19 +36,31 @@ public class ContinentController {
 
 	@GetMapping("/continents")
 	public ResponseEntity<List<Continent>> getAllContinents() {
-		List<Continent> list = continentService.getAllContinents();
-
 		logger.debug("---------------Fetching Continents-----------------");
-
-		return new ResponseEntity<List<Continent>>(list, HttpStatus.OK);
+		List<Continent> continentList = continentService.getAllContinents();
+		
+		if(continentList==null || continentList.size()==0)
+		{
+			throw new ContinentNotFoundException("No Continent found");
+		}
+		else {
+		return new ResponseEntity<List<Continent>>(continentList, HttpStatus.OK);
+		}
 
 	}
 
 	@GetMapping("/countries/{continentId}")
 	public ResponseEntity<List<Countries>> getCountriesOfContinents(@PathVariable("continentId") Integer continentId) {
 		logger.debug("---------------Fetching Countries within a continent-----------------");
-		List<Countries> list = (List<Countries>) continentService.getCountriesInContinent(continentId);
-		return new ResponseEntity<List<Countries>>(list, HttpStatus.OK);
+		List<Countries> countryList = (List<Countries>) continentService.getCountriesInContinent(continentId);
+		if(countryList==null || countryList.size()==0)
+		{
+			throw new ContinentNotFoundException("No Countries found");
+		}
+		else {
+		return new ResponseEntity<List<Countries>>(countryList, HttpStatus.OK);
+		}
+		
 	}
 
 	@GetMapping("/countries/flag/{name}")
