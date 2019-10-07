@@ -59,9 +59,9 @@ public class ContinentDaoImpl implements ContinentDao{
            Query query = entityManager.createQuery(hql);
            query.setParameter("name", name);
            
-           String res = query.getSingleResult().toString();
+           String flag = query.getSingleResult().toString();
 
-           return res;
+           return flag;
 
     }
 
