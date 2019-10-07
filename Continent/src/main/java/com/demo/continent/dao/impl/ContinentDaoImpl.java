@@ -18,11 +18,9 @@ import com.demo.continent.dao.ContinentDao;
 import com.demo.continent.model.Continent;
 import com.demo.continent.model.Countries;
 
-
 @Transactional
 @Repository
-//@NamedNativeQuery(name="getAllContinents", query="Select * from continents",resultClass=Continent.class)
-public class ContinentDaoImpl implements ContinentDao{
+public class ContinentDaoImpl implements ContinentDao {
 
 	private final Logger logger = LoggerFactory.getLogger(ContinentDaoImpl.class);
 	@PersistenceContext
@@ -30,40 +28,36 @@ public class ContinentDaoImpl implements ContinentDao{
 
 	@Override
 	public List<Continent> getAllContinents() {
-		
+
 		Query q = entityManager.createNamedQuery("getAllContinents", Continent.class);
-		logger.debug("*******************"+q.getResultList().size());
+		logger.debug("*******************" + q.getResultList().size());
 		return q.getResultList();
-		//return null;
-		
-		
+
 	}
 
 	@Override
 	public List<Countries> getCountriesInContinent(int continentId) {
-		//String hql = " from Countries where continent_id= :continentId ";
 		logger.debug("*******************Fetch the list of countries in a continent************************");
-		Query q = entityManager.createNamedQuery("getCountriesPerContinent",Countries.class).setParameter("continentId", continentId);
-		
+		Query q = entityManager.createNamedQuery("getCountriesPerContinent", Countries.class)
+				.setParameter("continentId", continentId);
+
 		return q.getResultList();
-		//return null;
-		
+
 	}
 
 	@Override
 
-    public String getFlagOfACountry(String name) {
+	public String getFlagOfACountry(String name) {
 
 		logger.debug("*******************Fetch the flag of a countryt************************");
-           String hql = "Select flag from Countries where name=:name";
-           Query query = entityManager.createQuery(hql);
-           query.setParameter("name", name);
-           
-           String flag = query.getSingleResult().toString();
+		String hql = "Select flag from Countries where name=:name";
+		Query query = entityManager.createQuery(hql);
+		query.setParameter("name", name);
 
-           return flag;
+		String flag = query.getSingleResult().toString();
 
-    }
+		return flag;
 
+	}
 
 }

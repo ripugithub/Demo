@@ -15,7 +15,6 @@ import com.demo.continent.model.Countries;
 import com.demo.continent.repository.ContinentRepo;
 import com.demo.continent.service.ContinentService;
 
-
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -27,44 +26,37 @@ import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("/code")
 public class ContinentController {
-	
-	
+
 	private final Logger logger = LoggerFactory.getLogger(ContinentController.class);
 	@Autowired
 	private ContinentService continentService;
 	@Autowired
 	private ContinentRepo continentRepo;
-	
-	
+
 	@GetMapping("/continents")
-	public ResponseEntity<List<Continent>> getAllContinents()
-	{
+	public ResponseEntity<List<Continent>> getAllContinents() {
 		List<Continent> list = continentService.getAllContinents();
-		
+
 		logger.debug("---------------Fetching Continents-----------------");
-		
+
 		return new ResponseEntity<List<Continent>>(list, HttpStatus.OK);
-		
+
 	}
-	
+
 	@GetMapping("/countries/{continentId}")
-	public ResponseEntity<List<Countries>> getCountriesOfContinents(@PathVariable("continentId") Integer continentId)
-	{
+	public ResponseEntity<List<Countries>> getCountriesOfContinents(@PathVariable("continentId") Integer continentId) {
 		logger.debug("---------------Fetching Countries within a continent-----------------");
 		List<Countries> list = (List<Countries>) continentService.getCountriesInContinent(continentId);
 		return new ResponseEntity<List<Countries>>(list, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/countries/flag/{name}")
-    public ResponseEntity<String> getFlagOfACountry(@PathVariable("name") String name)
-    {
-		
+	public ResponseEntity<String> getFlagOfACountry(@PathVariable("name") String name) {
+
 		logger.debug("---------------Fetching flag of a country-----------------");
 		String flag = continentService.getFlagOfACountry(name);
-		
-           return new ResponseEntity<String>(flag,HttpStatus.OK);
-    }
-	
-	
+
+		return new ResponseEntity<String>(flag, HttpStatus.OK);
+	}
 
 }
