@@ -3,8 +3,6 @@ package com.demo.continent.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -13,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demo.continent.controller.ContinentController;
 import com.demo.continent.dao.ContinentDao;
 import com.demo.continent.model.Continent;
 import com.demo.continent.model.Countries;

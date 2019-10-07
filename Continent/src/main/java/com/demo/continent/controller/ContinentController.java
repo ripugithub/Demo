@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.continent.exception.ContinentNotFoundException;
+import com.demo.continent.exception.CountryNotFoundException;
 import com.demo.continent.model.Continent;
 import com.demo.continent.model.Countries;
 import com.demo.continent.repository.ContinentRepo;
@@ -53,9 +54,10 @@ public class ContinentController {
 	public ResponseEntity<List<Countries>> getCountriesOfContinents(@PathVariable("continentId") Integer continentId) {
 		logger.debug("---------------Fetching Countries within a continent-----------------");
 		List<Countries> countryList = (List<Countries>) continentService.getCountriesInContinent(continentId);
+		
 		if(countryList==null || countryList.size()==0)
 		{
-			throw new ContinentNotFoundException("No Countries found");
+			throw new CountryNotFoundException("No Countries found");
 		}
 		else {
 		return new ResponseEntity<List<Countries>>(countryList, HttpStatus.OK);
